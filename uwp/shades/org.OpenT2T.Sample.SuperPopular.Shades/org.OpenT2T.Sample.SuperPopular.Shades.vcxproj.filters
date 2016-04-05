@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>e940367a-3582-441b-9cb3-ecbe71853f3d</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="AllJoynBusObjectManager.cpp" />
+    <ClCompile Include="AllJoynHelpers.cpp" />
+    <ClCompile Include="ShadesConsumer.cpp" />
+    <ClCompile Include="ShadesProducer.cpp" />
+    <ClCompile Include="ShadesServiceEventAdapter.cpp" />
+    <ClCompile Include="ShadesServiceEventArgs.cpp" />
+    <ClCompile Include="ShadesSignals.cpp" />
+    <ClCompile Include="ShadesWatcher.cpp" />
+    <ClCompile Include="TypeConversionHelpers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="AllJoynBusObjectManager.h" />
+    <ClInclude Include="AllJoynHelpers.h" />
+    <ClInclude Include="IShadesService.h" />
+    <ClInclude Include="ShadesConsumer.h" />
+    <ClInclude Include="ShadesEventArgs.h" />
+    <ClInclude Include="ShadesMethodResults.h" />
+    <ClInclude Include="ShadesProducer.h" />
+    <ClInclude Include="ShadesServiceEventAdapter.h" />
+    <ClInclude Include="ShadesServiceEventArgs.h" />
+    <ClInclude Include="ShadesSignals.h" />
+    <ClInclude Include="ShadesStructures.h" />
+    <ClInclude Include="ShadesWatcher.h" />
+    <ClInclude Include="TypeConversionHelpers.h" />
+  </ItemGroup>
+</Project>

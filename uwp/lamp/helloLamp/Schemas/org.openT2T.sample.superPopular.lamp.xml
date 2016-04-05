@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<node>
+  <interface name="org.openT2T.sample.superPopular.lamp">
+    <!-- Turn on the light -->
+    <method name="turnOn" />
+    <!-- Turn off the light -->
+    <method name="turnOff" />
+    <!-- Set the brightness of the light -->
+    <method name="setBrightness">
+      <!-- Valid values range from 0 (off) to 100 (full brightness) -->
+      <arg name="brightness" type="u" direction="in" />
+    </method>
+    <signal name="testSignal" />
+  </interface>
+</node>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="HelloShadesCommandSet_en-us">
+    <CommandPrefix>Shades</CommandPrefix>
+    <Example>Open shades</Example>
+    <Command Name="open">
+      <Example>Open shades</Example>
+      <ListenFor RequireAppName="ExplicitlySpecified">[Would] [you] [please] open [the] {builtin:AppName} [please]</ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified">[Would] [you] [please] raise [the] {builtin:AppName} [please]</ListenFor>
+      <Feedback>Opening the shades</Feedback>
+      <VoiceCommandService Target="VoiceCommandService"/>
+    </Command>
+    <Command Name="close">
+      <Example>Close shades</Example>
+      <ListenFor RequireAppName="ExplicitlySpecified">[Would] [you] [please] close [the] {builtin:AppName} [please]</ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified">[Would] [you] [please] lower [the] {builtin:AppName} [please]</ListenFor>
+      <Feedback>Closing the shades</Feedback>
+      <VoiceCommandService Target="VoiceCommandService"/>
+    </Command>
+  </CommandSet>
+</VoiceCommands>

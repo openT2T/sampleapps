@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HelloTemperature</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_refresh">Refresh</string>
+    <string name="get_data_confirmation">Getting data from sensors</string>
+    <string name="msg_nosensors">No shades found</string>
+</resources>

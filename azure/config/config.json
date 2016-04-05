@@ -1,0 +1,14 @@
+{
+    "deviceRegistryUrl": "https://github.com/openT2T/translators.git",
+    "deviceRegistryLocal": "repo",
+    "repoDir": "repo",
+    "iothub": {
+        "SASKeyName": "<SAS Key Name",
+        "SASKey": "<SAS key>",
+        "serviceBusHost": "<EventHub host name>",
+        "eventHubName": "<EventHub name>",
+        "partitions": 4,
+        "offsetFilter": "now"
+    }
+}
+

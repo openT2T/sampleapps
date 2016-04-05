@@ -1,0 +1,32 @@
+[
+    {
+        "deviceId": "light1",
+        "deviceType": "org.openT2T.sample.superPopular.lamp/Test Light",
+        "initDevice": {
+            "name": "WINK",
+            "controlString": "light1 WINK controlString",
+            "controlId": "<light1 WINK controlId>",
+            "props": "<light1 WINK props>"
+        }
+    },
+       {
+        "deviceId": "consoleLight1",
+        "deviceType": "org.openT2T.sample.superPopular.lamp/Test Light",
+        "initDevice": {
+            "name": "WINK",
+            "controlString": "<consoleLight1 WINK controlString>",
+            "controlId": "<consoleLight1 WINK controlId>",
+            "props": "<consoleLight1 WINK props>"
+        }
+    },
+       {
+        "deviceId": "sensorTag1",
+        "deviceType": "org.openT2T.sample.superPopular.temperatureSensor/Test Thermostat",
+        "initDevice": {
+            "name": "Test Thermostat",
+            "controlString": "<sensorTag1 controlString>",
+            "controlId": "<sensorTag1 controlId>",
+            "props": "<sensorTag1 props>"
+        }
+    }
+]

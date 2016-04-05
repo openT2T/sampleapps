@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HelloLamp</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_all_on">Turn All On</string>
+    <string name="button_all_off">Turn All Off</string>
+    <string name="all_on_confirmation">Turning all lamps on</string>
+    <string name="all_off_confirmation">Turning all lamps off</string>
+    <string name="msg_nolamps">No lamps found</string>
+</resources>
