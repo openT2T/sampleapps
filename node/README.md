@@ -26,34 +26,34 @@ The only required property is `deviceId` that is used to identity the device pro
 * device profiles file: the file contains the properties that can be used to connect to the device (maybe via a 3rd party service such as WINK).
 ```json
 [
-    {
+     {
         "deviceId": "light1",
-        "deviceType": "org.openT2T.sample.superPopular.lamp/Test Light",
+        "deviceType": "org.OpenT2T.Sample.SuperPopular.Lamp/Test Light",
         "initDevice": {
-            "name": "WINK",
+            "name": "Wink Light",
             "url": "<url of the service>",
-            "accessToken": "<Access Token>",
-            "refreshToken": "<Refresh Token>"
+            "access_token": "<Access Token>",
+            "expires_in": "<Access Token Expiry>"
         }
     },
-       {
+    {
         "deviceId": "consoleLight1",
-        "deviceType": "org.openT2T.sample.superPopular.lamp/Test Light",
+        "deviceType": "org.OpenT2T.Sample.SuperPopular.Lamp/Test Light",
         "initDevice": {
             "name": "WINK",
             "url": "<url of the service>",
-            "accessToken": "<Access Token>",
-            "refreshToken": "<Refresh Token>"
+            "access_token": "<Access Token>",
+            "expires_in": "<Access Token Expiry>"
         }
     },
-       {
+    {
         "deviceId": "sensorTag1",
-        "deviceType": "org.openT2T.sample.superPopular.temperatureSensor/Test Thermostat",
+        "deviceType": "org.OpenT2T.Sample.SuperPopular.TemperatureSensor/Test Temperature Sensor",
         "initDevice": {
-            "name": "Test Thermostat",
+            "name": "Test Temperature Sensor",
             "url": "<url of the service>",
-            "accessToken": "<Access Token>",
-            "refreshToken": "<Refresh Token>"
+            "access_token": "<Access Token>",
+            "expires_in": "<Access Token Expiry>"
         }
     }
 ]
