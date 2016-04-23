@@ -27,8 +27,8 @@ module.exports = {
      * program paramenter.
      * Along with the device hierarchy, the device profiles file is loaded (it uses the same name postfixed with 'profiles')
      * The device profiles file containers the properties that are used at runtime to establish a connection with the device
-     * For instance for a WINK device is is the accessToken and refreshToken. Those properties are passed into the thinkProtocol
-     * handler to set the context for the calls (so functions can connect to the WINK cloud service using the correct Auth token)
+     * For instance for a Wink device is is the access_token and device id. Those properties are passed into the thinkProtocol
+     * handler to set the context for the calls (so functions can connect to the WINK cloud service using the correct access token)
      * 
      */
     init: function(devColl, devProfileDir) {
