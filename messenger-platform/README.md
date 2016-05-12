@@ -15,7 +15,7 @@ module.exports = {
 }
 ```
 
-3. Finally, deploy this bot to a web URL, since Facebook uses webhooks to communicate with this bot. Once your bot
+Finally, deploy this bot to a web URL, since Facebook uses webhooks to communicate with this bot. Once your bot
 is deployed, you need to set up the webhooks to point to the bot's URL in the Facebook Developer Portal.
 
 # Developing
