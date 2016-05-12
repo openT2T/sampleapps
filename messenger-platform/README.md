@@ -6,9 +6,16 @@ Uses translators to interact with device categories.
 
 # Setup
 
-You need to follow the instructions on the Facebook Developers site to create an app enabled for the Messenger Platform.
+1. You need to follow the instructions on the Facebook Developers site to create an app enabled for the Messenger Platform.
+2. Create a creds.js file in the same director as the app.js for this bot, and enter the page access token from the Facebook Developer Portal.
 
-You also need to deploy this bot to a web URL, since Facebook uses webhooks to communicate with this bot. Once your bot
+```
+module.exports = {
+    PAGE_ACCESS_TOKEN : '<page access token>'
+}
+```
+
+3. Finally, deploy this bot to a web URL, since Facebook uses webhooks to communicate with this bot. Once your bot
 is deployed, you need to set up the webhooks to point to the bot's URL in the Facebook Developer Portal.
 
 # Developing
