@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var replies = require('../replies');
+var users = require('../users');
 
 /* GET */
 router.get('/', function (req, res) {
@@ -11,33 +12,39 @@ router.get('/', function (req, res) {
   res.send('Error, wrong validation token');
 });
 
-/* POST */
+/* POST: main entry point that handles incoming messages */
 router.post('/', function (req, res) {
 
   messaging_events = req.body.entry[0].messaging;
   for (i = 0; i < messaging_events.length; i++) {
     event = req.body.entry[0].messaging[i];
     sender = event.sender.id;
-    
-    console.log('Event: ' + JSON.stringify(event));
-    
-    if (event.message && event.message.text) {
-      text = event.message.text;
+    if (!!users.getToken(sender)) {
 
-      if (text === 'Structured') {
-        // Handled a structured message request
-        replies.sendStructuredMessage(sender);
-        continue;
-      } else {
-        // Handle a text message from this sender
-        replies.sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200));
+      console.log('Event: ' + JSON.stringify(event));
+
+      if (event.message && event.message.text) {
+        text = event.message.text;
+
+        if (text === 'Structured') {
+          // Handled a structured message request
+          replies.sendStructuredMessage(sender);
+          continue;
+        } else {
+          // Handle a text message from this sender
+          replies.sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200));
+        }
       }
-    }
-    
-    if (event.postback) {
-      text = JSON.stringify(event.postback);
-      replies.sendTextMessage(sender, 'Postback received: ' + text.substring(0, 200));
-      continue;
+
+      if (event.postback) {
+        text = JSON.stringify(event.postback);
+        replies.sendTextMessage(sender, 'Postback received: ' + text.substring(0, 200));
+        
+        continue;
+      }
+    } else {
+      replies.sendSignInMessage(sender);
+      break;
     }
   }
 

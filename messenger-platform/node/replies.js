@@ -1,8 +1,26 @@
 var request = require('request');
-var creds = require('./creds');
+var settings = require('./settings');
+
+var sendMessageData = function (recipient, messageData) {
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: settings.PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: {
+            recipient: { id: recipient },
+            message: messageData,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+    });
+};
 
 module.exports = {
-    sendTextMessage: function (sender, text) {
+    sendTextMessage: function (recipient, text) {
 
         console.log('Sending text message...');
 
@@ -10,24 +28,40 @@ module.exports = {
             text: text
         };
 
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: { access_token: creds.PAGE_ACCESS_TOKEN },
-            method: 'POST',
-            json: {
-                recipient: { id: sender },
-                message: messageData,
-            }
-        }, function (error, response, body) {
-            if (error) {
-                console.log('Error sending message: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            }
-        });
+        sendMessageData(recipient, messageData);
     },
 
-    sendStructuredMessage: function (sender) {
+    sendSignInMessage: function (recipient) {
+
+        console.log('Sending sign in message...');
+
+        var messageData = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                            "title": "Looks like you're not signed in to Wink",
+                            "subtitle": "I can control stuff via Wink. Give me access, please!",
+                            "image_url": "http://www.wink.com/img/product/wink-hub/variants/840410102358/hero_01.png",
+                            "buttons": [
+                                {
+                                    "type": "web_url",
+                                    "url": settings.SERVER_URL + '/wink?uid=' + recipient,
+                                    "title": "Sign In"
+                                }
+                            ],
+                        }
+                    ]
+                }
+            }
+        };
+
+        sendMessageData(recipient, messageData);
+    },
+
+    sendStructuredMessage: function (recipient) {
 
         console.log('Sending structured message...');
 
@@ -71,20 +105,6 @@ module.exports = {
             }
         };
 
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: { access_token: creds.PAGE_ACCESS_TOKEN },
-            method: 'POST',
-            json: {
-                recipient: { id: sender },
-                message: messageData,
-            }
-        }, function (error, response, body) {
-            if (error) {
-                console.log('Error sending message: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            }
-        });
+        sendMessageData(recipient, messageData);
     }
 }

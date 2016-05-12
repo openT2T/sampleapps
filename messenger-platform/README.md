@@ -7,11 +7,20 @@ Uses translators to interact with device categories.
 # Setup
 
 1. You need to follow the instructions on the Facebook Developers site to create an app enabled for the Messenger Platform.
-2. Create a creds.js file in the same director as the app.js for this bot, and enter the page access token from the Facebook Developer Portal.
+2. Create a creds.js file in the same director as the app.js for this bot, and enter the required information specific to your application.
+   This is private information, and should not be committed to git.
 
 ```
 module.exports = {
-    PAGE_ACCESS_TOKEN : '<page access token>'
+
+    // Page Access Token (from Facebook Developer Portal)
+    PAGE_ACCESS_TOKEN : '<required>',
+    
+    // Wink API Client ID (from Wink)
+    WINK_CLIENT_ID: '<required>',
+    
+    // Wink API Client Secret (from Wink)
+    WINK_CLIENT_SECRET: '<required>',
 }
 ```
 
