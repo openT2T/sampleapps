@@ -6,19 +6,23 @@ var router = express.Router();
 var request = require('request');
 var settings = require('../settings');
 var users = require('../users');
+var replies = require('../replies');
 
 /* GET */
 router.get('/', function (req, res) {
     var uid = req.query['uid'];
 
     if (!!uid) {
-        res.render('wink', { uid: uid });
+        // if the uid is sent, render the wink view
+        res.render('winkOnboarding', { uid: uid });
     } else {
-        res.send('Error, missing uid');
+        res.render('error', { message: 'Missing UID', error: {} });
     }
 });
 
-/* POST */
+/* POST: (with username and password in body)
+   Initiates sign in to the WINK service for this uid
+ */
 router.post('/', function (req, res) {
 
     var postData = JSON.stringify({
@@ -52,7 +56,7 @@ router.post('/', function (req, res) {
         signInResponse.on('end', function () {
 
             if (signInResponse.statusCode != 200) {
-                res.send('Error (failure status code): ' + JSON.stringify(signInResponse));
+                res.send('Error (failure status code ' + signInResponse.statusCode + ' ): ' + body);
             }
             else {
                 // signed in, now enumerate devices and let the user pick one
@@ -60,7 +64,9 @@ router.post('/', function (req, res) {
                 
                 users.signIn(req.body.user.uid, winkUser.access_token);
                 
-                res.send('Signed in to Wink, thanks. You may close this window now and return to the bot that sent you here.');
+                replies.sendTextMessage(req.body.user.uid, 'Signed in to Wink, thanks! Now I can do stuff.');
+                
+                res.send('Signed in to Wink, thanks! You may close this window now and return to the bot that sent you here.');
             }
         });
 

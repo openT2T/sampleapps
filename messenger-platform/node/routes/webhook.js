@@ -1,49 +1,58 @@
-var express = require('express');
-var router = express.Router();
-var replies = require('../replies');
-var users = require('../users');
+'use strict';
+
+const express = require('express');
+const router = express.Router();
+const replies = require('../replies');
+const users = require('../users');
+const conversations = require('../conversations');
+var settings = require('../settings');
+
+var signInNotified = false;
 
 /* GET */
 router.get('/', function (req, res) {
-
-  if (req.query['hub.verify_token'] === 'Sup3rS3cr3t') {
+  if (req.query['hub.mode'] === 'subscribe' &&
+    req.query['hub.verify_token'] === settings.FB_VERIFY_TOKEN) {
     res.send(req.query['hub.challenge']);
+  } else {
+    res.sendStatus(400);
   }
-  res.send('Error, wrong validation token');
 });
 
 /* POST: main entry point that handles incoming messages */
 router.post('/', function (req, res) {
 
-  messaging_events = req.body.entry[0].messaging;
-  for (i = 0; i < messaging_events.length; i++) {
-    event = req.body.entry[0].messaging[i];
-    sender = event.sender.id;
-    if (!!users.getToken(sender)) {
+  var messaging_events = req.body.entry[0].messaging;
+  for (var i = 0; i < messaging_events.length; i++) {
+    var event = req.body.entry[0].messaging[i];
+    var senderId = event.sender.id;
+    
+    console.log('senderId: ' + senderId);
+    console.log('token: ' + users.getToken(senderId));
+    console.log('notified: ' + users.signInNotified(senderId));
+    
+    if (!!users.getToken(senderId)) {
 
+      users.setSignInNotified(senderId, false);
       console.log('Event: ' + JSON.stringify(event));
 
       if (event.message && event.message.text) {
-        text = event.message.text;
 
-        if (text === 'Structured') {
-          // Handled a structured message request
-          replies.sendStructuredMessage(sender);
-          continue;
-        } else {
-          // Handle a text message from this sender
-          replies.sendTextMessage(sender, 'Text received, echo: ' + text.substring(0, 200));
-        }
+        // Yay! We got a new message!
+        console.log('Got a message...');
+        conversations.processMessageEntry(senderId, event.message);
       }
 
       if (event.postback) {
         text = JSON.stringify(event.postback);
-        replies.sendTextMessage(sender, 'Postback received: ' + text.substring(0, 200));
-        
+        replies.sendTextMessage(senderId, 'Postback received: ' + text.substring(0, 200));
+
         continue;
       }
-    } else {
-      replies.sendSignInMessage(sender);
+    } else if (!users.signInNotified(senderId)) {
+      replies.sendSignInMessage(senderId);
+      users.setSignInNotified(senderId, true);
+      
       break;
     }
   }

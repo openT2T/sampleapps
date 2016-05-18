@@ -13,14 +13,26 @@ Uses translators to interact with device categories.
 ```
 module.exports = {
 
+   // Address where the server is deployed
+    SERVER_URL : 'http://...',
+    
+    // Page ID (from Facebook Developer Portal)
+    FB_PAGE_ID: '...',
+    
+    // Webhook verify token (from Facebook Developer Portal)
+    FB_VERIFY_TOKEN: '...',
+    
     // Page Access Token (from Facebook Developer Portal)
-    PAGE_ACCESS_TOKEN : '<required>',
+    PAGE_ACCESS_TOKEN : '...',
     
     // Wink API Client ID (from Wink)
-    WINK_CLIENT_ID: '<required>',
+    WINK_CLIENT_ID: '...',
     
     // Wink API Client Secret (from Wink)
-    WINK_CLIENT_SECRET: '<required>',
+    WINK_CLIENT_SECRET: '...',
+    
+    // Wit.ai access token for natural language conversations
+    WIT_TOKEN: '...'
 }
 ```
 

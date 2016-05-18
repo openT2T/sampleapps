@@ -1,13 +1,15 @@
+'use strict';
+
 var request = require('request');
 var settings = require('./settings');
 
-var sendMessageData = function (recipient, messageData) {
+var sendMessageData = function (recipientId, messageData) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: { access_token: settings.PAGE_ACCESS_TOKEN },
         method: 'POST',
         json: {
-            recipient: { id: recipient },
+            recipient: { id: recipientId },
             message: messageData,
         }
     }, function (error, response, body) {
@@ -20,7 +22,7 @@ var sendMessageData = function (recipient, messageData) {
 };
 
 module.exports = {
-    sendTextMessage: function (recipient, text) {
+    sendTextMessage: function (recipientId, text) {
 
         console.log('Sending text message...');
 
@@ -28,10 +30,10 @@ module.exports = {
             text: text
         };
 
-        sendMessageData(recipient, messageData);
+        sendMessageData(recipientId, messageData);
     },
 
-    sendSignInMessage: function (recipient) {
+    sendSignInMessage: function (recipientId) {
 
         console.log('Sending sign in message...');
 
@@ -48,7 +50,7 @@ module.exports = {
                             "buttons": [
                                 {
                                     "type": "web_url",
-                                    "url": settings.SERVER_URL + '/wink?uid=' + recipient,
+                                    "url": settings.SERVER_URL + '/winkOnboarding?uid=' + recipientId,
                                     "title": "Sign In"
                                 }
                             ],
@@ -58,53 +60,6 @@ module.exports = {
             }
         };
 
-        sendMessageData(recipient, messageData);
-    },
-
-    sendStructuredMessage: function (recipient) {
-
-        console.log('Sending structured message...');
-
-        var messageData = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": "First card",
-                            "subtitle": "Element #1 of an hscroll",
-                            "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                            "buttons": [
-                                {
-                                    "type": "web_url",
-                                    "url": "https://www.messenger.com/",
-                                    "title": "Web url"
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "Postback",
-                                    "payload": "Payload for first element in a generic bubble",
-                                }
-                            ],
-                        },
-                        {
-                            "title": "Second card",
-                            "subtitle": "Element #2 of an hscroll",
-                            "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Postback",
-                                    "payload": "Payload for second element in a generic bubble",
-                                }
-                            ],
-                        }
-                    ]
-                }
-            }
-        };
-
-        sendMessageData(recipient, messageData);
+        sendMessageData(recipientId, messageData);
     }
 }

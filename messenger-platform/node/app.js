@@ -1,4 +1,5 @@
 
+'use strict';
 
 var express = require('express');
 var path = require('path');
@@ -9,8 +10,9 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var webhook = require('./routes/webhook');
-var wink = require('./routes/wink');
+var winkOnboarding = require('./routes/winkOnboarding');
 
+// web server setup
 var app = express();
 
 var env = process.env.NODE_ENV || 'development';
@@ -18,7 +20,6 @@ app.locals.ENV = env;
 app.locals.ENV_DEVELOPMENT = env == 'development';
 
 // view engine setup
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/webhook', webhook);
-app.use('/wink', wink);
+app.use('/winkOnboarding', winkOnboarding);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
