@@ -5,14 +5,14 @@ const router = express.Router();
 const replies = require('../replies');
 const users = require('../users');
 const conversations = require('../conversations');
-var settings = require('../settings');
+var settings = require('../config/config.json');
 
 var signInNotified = false;
 
 /* GET */
 router.get('/', function (req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-    req.query['hub.verify_token'] === settings.FB_VERIFY_TOKEN) {
+    req.query['hub.verify_token'] === settings.facebook.verifyToken) {
     res.send(req.query['hub.challenge']);
   } else {
     res.sendStatus(400);

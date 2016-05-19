@@ -2,7 +2,7 @@
 'use strict'
 
 const Wit = require('node-wit').Wit;
-const settings = require('./settings');
+const settings = require('./config/config.json');
 const replies = require('./replies');
 
 // This will contain all user sessions.
@@ -88,7 +88,7 @@ const actions = {
 };
 
 // Setting up our bot
-const wit = new Wit(settings.WIT_TOKEN, actions);
+const wit = new Wit(settings.facebook.witToken, actions);
 
 module.exports = {
 

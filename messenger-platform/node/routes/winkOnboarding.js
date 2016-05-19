@@ -4,7 +4,7 @@ var https = require('https');
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-var settings = require('../settings');
+var settings = require('../config/config.json');
 var users = require('../users');
 var replies = require('../replies');
 
@@ -26,8 +26,8 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
 
     var postData = JSON.stringify({
-        'client_id': settings.WINK_CLIENT_ID,
-        'client_secret': settings.WINK_CLIENT_SECRET,
+        'client_id': settings.wink.clientId,
+        'client_secret': settings.wink.clientSecret,
         'username': req.body.user.email,
         'password': req.body.user.password,
         'grant_type': 'password'

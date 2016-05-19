@@ -1,12 +1,12 @@
 'use strict';
 
 var request = require('request');
-var settings = require('./settings');
+var settings = require('./config/config.json');
 
 var sendMessageData = function (recipientId, messageData) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: { access_token: settings.PAGE_ACCESS_TOKEN },
+        qs: { access_token: settings.facebook.pageAccessToken },
         method: 'POST',
         json: {
             recipient: { id: recipientId },
@@ -50,7 +50,7 @@ module.exports = {
                             "buttons": [
                                 {
                                     "type": "web_url",
-                                    "url": settings.SERVER_URL + '/winkOnboarding?uid=' + recipientId,
+                                    "url": settings.serverUrl + '/winkOnboarding?uid=' + recipientId,
                                     "title": "Sign In"
                                 }
                             ],
