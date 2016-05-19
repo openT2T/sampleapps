@@ -7,8 +7,6 @@ const users = require('../users');
 const conversations = require('../conversations');
 var settings = require('../config/config.json');
 
-var signInNotified = false;
-
 /* GET */
 router.get('/', function (req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
@@ -29,7 +27,7 @@ router.post('/', function (req, res) {
     
     console.log('senderId: ' + senderId);
     console.log('token: ' + users.getToken(senderId));
-    console.log('notified: ' + users.signInNotified(senderId));
+    console.log('notified: ' + users.getSignInNotified(senderId));
     
     if (!!users.getToken(senderId)) {
 
@@ -49,7 +47,7 @@ router.post('/', function (req, res) {
 
         continue;
       }
-    } else if (!users.signInNotified(senderId)) {
+    } else if (!users.getSignInNotified(senderId)) {
       replies.sendSignInMessage(senderId);
       users.setSignInNotified(senderId, true);
       

@@ -81,8 +81,10 @@ const actions = {
   
   // Bot custom actions
   // See https://wit.ai/docs/quickstart
-  processStateCommand(sessionId, context, cb) {
+  processStateCommand(sessionId, context, cb) {    
+    const winkLampTranslator = require(settings.repoDir + '/org.OpenT2T.Sample.SuperPopular.Lamp/Wink Light Bulb/js/thingTranslator.js');
     console.log('*** processStateCommand: ' + JSON.stringify(context));
+
     cb(context);
   }
 };

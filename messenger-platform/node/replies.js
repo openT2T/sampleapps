@@ -1,9 +1,9 @@
 'use strict';
 
-var request = require('request');
-var settings = require('./config/config.json');
+const request = require('request');
+const settings = require('./config/config.json');
 
-var sendMessageData = function (recipientId, messageData) {
+const sendMessageData = function (recipientId, messageData) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: { access_token: settings.facebook.pageAccessToken },
