@@ -4,6 +4,7 @@
 const Wit = require('node-wit').Wit;
 const settings = require('./config/config.json');
 const replies = require('./replies');
+const users = require('./users');
 
 // This will contain all user sessions.
 // Each session has an entry:
@@ -32,7 +33,7 @@ const firstEntityValue = (entities, entity) => {
     Array.isArray(entities[entity]) &&
     entities[entity].length > 0 &&
     entities[entity][0].value
-  ;
+    ;
   if (!val) {
     return null;
   }
@@ -41,7 +42,7 @@ const firstEntityValue = (entities, entity) => {
 
 // Our bot actions
 const actions = {
-  
+
   say(sessionId, context, message, cb) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belongs to
@@ -57,7 +58,7 @@ const actions = {
       cb();
     }
   },
-  
+
   merge(sessionId, context, entities, message, cb) {
 
     // Retrieve the thing entity and store it into a context field
@@ -74,16 +75,49 @@ const actions = {
 
     cb(context);
   },
-  
+
   error(sessionId, context, error) {
     console.log(error.message);
   },
-  
+
   // Bot custom actions
   // See https://wit.ai/docs/quickstart
-  processStateCommand(sessionId, context, cb) {    
-    const winkLampTranslator = require(settings.repoDir + '/org.OpenT2T.Sample.SuperPopular.Lamp/Wink Light Bulb/js/thingTranslator.js');
+  processStateCommand(sessionId, context, cb) {
+
     console.log('*** processStateCommand: ' + JSON.stringify(context));
+
+    // Let's retrieve the Facebook user whose session belongs to
+    const uid = sessions[sessionId].fbid;
+    var lampIds = users.getLampIds(uid);
+    var token = users.getToken(uid);
+
+    console.log('uid: ' + uid);
+    console.log('lampIds: ' + JSON.stringify(lampIds));
+    console.log('token: ' + token);
+
+    for (var i = 0; i < lampIds.length; i++) {
+      var translator = require('./' + settings.repoDir + '/org.OpenT2T.Sample.SuperPopular.Lamp/Wink\ Light\ Bulb/js/thingTranslator');
+
+      // device object passed in as context to the translator
+      function Device(deviceId, accessToken) {
+        this.props = ' { "id": "' + deviceId + '", "access_token": "' + accessToken + '" }';
+        this.name = "Wink Light Bulb";
+      }
+
+      var device = new Device(lampIds[i], token);
+
+      // initialize the translator for this device
+      translator.initDevice(device);
+
+      switch (context.on_off) {
+        case "on":
+          translator.turnOn();
+          break;
+        case "off":
+          translator.turnOff();
+          break;
+      }
+    }
 
     cb(context);
   }

@@ -97,11 +97,13 @@ router.post('/', function (req, res) {
                             devices = devices.filter(function (device) {
                                 return !!device[idKeyFilter];
                             });
-
+                            
                             if (!!devices && devices.length > 0) {
                                 var deviceIds = devices.map(function (device) {
                                     return device[idKeyFilter];
                                 });
+                                
+                                console.log('devices IDs: ' + JSON.stringify(deviceIds));
 
                                 // save device ids
                                 users.setLampIds(req.body.user.uid, deviceIds);
