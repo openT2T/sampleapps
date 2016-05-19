@@ -27,8 +27,21 @@ const findOrCreateSession = (fbid) => {
   return sessionId;
 };
 
+const firstEntityValue = (entities, entity) => {
+  const val = entities && entities[entity] &&
+    Array.isArray(entities[entity]) &&
+    entities[entity].length > 0 &&
+    entities[entity][0].value
+  ;
+  if (!val) {
+    return null;
+  }
+  return typeof val === 'object' ? val.value : val;
+};
+
 // Our bot actions
 const actions = {
+  
   say(sessionId, context, message, cb) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belongs to
@@ -44,14 +57,34 @@ const actions = {
       cb();
     }
   },
+  
   merge(sessionId, context, entities, message, cb) {
+
+    // Retrieve the thing entity and store it into a context field
+    const thing = firstEntityValue(entities, 'thing');
+    if (!!thing) {
+      context.thing = thing;
+    }
+
+    // Retrieve the on_off entity and store it into a context field
+    const on_off = firstEntityValue(entities, 'on_off');
+    if (!!on_off) {
+      context.on_off = on_off;
+    }
+
     cb(context);
   },
+  
   error(sessionId, context, error) {
     console.log(error.message);
   },
-  // You should implement your custom actions here
+  
+  // Bot custom actions
   // See https://wit.ai/docs/quickstart
+  processStateCommand(sessionId, context, cb) {
+    console.log('*** processStateCommand: ' + JSON.stringify(context));
+    cb(context);
+  }
 };
 
 // Setting up our bot
@@ -63,7 +96,7 @@ module.exports = {
   processMessageEntry: function (senderId, message) {
 
     console.log('Processing message entry...');
-      
+
     // We retrieve the user's current session, or create one if it doesn't exist
     // This is needed for our bot to figure out the conversation history
     const sessionId = findOrCreateSession(senderId);
@@ -72,7 +105,7 @@ module.exports = {
     const msg = message.text;
     const atts = message.attachments;
 
-    
+
     if (atts) {
       // We received an attachment
 

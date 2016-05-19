@@ -7,32 +7,23 @@ Uses translators to interact with device categories.
 # Setup
 
 1. You need to follow the instructions on the Facebook Developers site to create an app enabled for the Messenger Platform.
-2. Create a creds.js file in the same director as the app.js for this bot, and enter the required information specific to your application.
-   This is private information, and should not be committed to git.
+2. Update the config.json file in the config directory with the required information specific to your application.
+   This is private information, and should not be committed to git (hence this file is in .gitignore)
 
 ```
-module.exports = {
-
-   // Address where the server is deployed
-    SERVER_URL : 'http://...',
-    
-    // Page ID (from Facebook Developer Portal)
-    FB_PAGE_ID: '...',
-    
-    // Webhook verify token (from Facebook Developer Portal)
-    FB_VERIFY_TOKEN: '...',
-    
-    // Page Access Token (from Facebook Developer Portal)
-    PAGE_ACCESS_TOKEN : '...',
-    
-    // Wink API Client ID (from Wink)
-    WINK_CLIENT_ID: '...',
-    
-    // Wink API Client Secret (from Wink)
-    WINK_CLIENT_SECRET: '...',
-    
-    // Wit.ai access token for natural language conversations
-    WIT_TOKEN: '...'
+{
+    "deviceRegistryUrl": "https://github.com/openT2T/translators.git",
+    "repoDir": "repo",
+    "facebook": {
+        "pageId": "<from Facebook Developer Portal>",
+        "verifyToken": "<from Facebook Developer Portal>",
+        "pageAccessToken": "<from Facebook Developer Portal>",
+        "witToken": "<from Wit.ai console>"
+    },
+    "wink": {
+        "clientId": "<from Wink>",
+        "clientSecret": "<from Wink>"
+    }
 }
 ```
 
