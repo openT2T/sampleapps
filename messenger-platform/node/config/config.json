@@ -1,12 +1,22 @@
 {
+    // device directory repo Url
     "deviceRegistryUrl": "https://github.com/openT2T/translators.git",
+    
+    // local directory where repo is cloned
     "repoDir": "repo",
+    
+    // Address where the server is deployed
+    "serverUrl": "<server address, e.g. api.example.com>",
+    
+    // Facebook config information
     "facebook": {
         "pageId": "<from Facebook Developer Portal>",
         "verifyToken": "<from Facebook Developer Portal>",
         "pageAccessToken": "<from Facebook Developer Portal>",
         "witToken": "<from Wit.ai console>"
     },
+    
+    // Wink config information
     "wink": {
         "clientId": "<from Wink>",
         "clientSecret": "<from Wink>"
