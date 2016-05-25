@@ -1,0 +1,23 @@
+{
+  "name": "opent2tbotframework",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openT2T/sampleapps.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openT2T/sampleapps/issues"
+  },
+  "homepage": "https://github.com/openT2T/sampleapps#readme",
+  "dependencies": {
+    "botbuilder": "^0.11.1",
+    "restify": "^4.0.4"
+  }
+}
