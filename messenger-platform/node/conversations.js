@@ -88,38 +88,54 @@ const actions = {
 
     // Let's retrieve the Facebook user whose session belongs to
     const uid = sessions[sessionId].fbid;
-    var lampIds = users.getLampIds(uid);
-    var token = users.getToken(uid);
+    if (uid) {
+      // Yay, we found our recipient!
+      var lampIds = users.getLampIds(uid);
+      var token = users.getToken(uid);
 
-    console.log('uid: ' + uid);
-    console.log('lampIds: ' + JSON.stringify(lampIds));
-    console.log('token: ' + token);
-
-    for (var i = 0; i < lampIds.length; i++) {
-      var translator = require('./' + settings.repoDir + '/org.OpenT2T.Sample.SuperPopular.Lamp/Wink\ Light\ Bulb/js/thingTranslator');
-
-      // device object passed in as context to the translator
-      function Device(deviceId, accessToken) {
-        this.props = ' { "id": "' + deviceId + '", "access_token": "' + accessToken + '" }';
-        this.name = "Wink Light Bulb";
-      }
-
-      var device = new Device(lampIds[i], token);
-
-      // initialize the translator for this device
-      translator.initDevice(device);
+      console.log('uid: ' + uid);
+      console.log('lampIds: ' + JSON.stringify(lampIds));
+      console.log('token: ' + token);
 
       switch (context.on_off) {
         case "on":
-          translator.turnOn();
+          replies.sendTextMessage(uid, 'OK, turning on ' + lampIds.length + ' lights');
           break;
         case "off":
-          translator.turnOff();
+          replies.sendTextMessage(uid, 'OK, turning off ' + lampIds.length + ' lights');
           break;
       }
-    }
 
-    cb(context);
+      for (var i = 0; i < lampIds.length; i++) {
+        var translator = require('./' + settings.repoDir + '/org.OpenT2T.Sample.SuperPopular.Lamp/Wink\ Light\ Bulb/js/thingTranslator');
+
+        // device object passed in as context to the translator
+        function Device(deviceId, accessToken) {
+          this.props = ' { "id": "' + deviceId + '", "access_token": "' + accessToken + '" }';
+          this.name = "Wink Light Bulb";
+        }
+
+        var device = new Device(lampIds[i], token);
+
+        // initialize the translator for this device
+        translator.initDevice(device);
+
+        switch (context.on_off) {
+          case "on":
+            translator.turnOn();
+            break;
+          case "off":
+            translator.turnOff();
+            break;
+        }
+      }
+
+      cb(context);
+    } else {
+      console.log('Oops! Couldn\'t find user for session:', sessionId);
+      // Giving the wheel back to our bot
+      cb(context);
+    }
   }
 };
 
