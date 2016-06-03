@@ -5,7 +5,7 @@ const router = express.Router();
 const replies = require('../replies');
 const users = require('../users');
 const conversations = require('../conversations');
-var settings = require('../config/config.json');
+const settings = require('../config/config.json');
 
 /* GET */
 router.get('/', function (req, res) {

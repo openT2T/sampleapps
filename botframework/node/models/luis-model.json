@@ -1,0 +1,187 @@
+{
+  "luis_schema_version": "1.2.0",
+  "name": "opent2t-sample-botframework",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "Name": "None",
+      "Children": []
+    },
+    {
+      "Name": "SetPowerState",
+      "Children": []
+    }
+  ],
+  "entities": [
+    {
+      "Name": "powerState",
+      "Children": []
+    },
+    {
+      "Name": "thing",
+      "Children": []
+    }
+  ],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "turn on the lights",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "please, turn on the lights",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "thing",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "turn the lights on",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "good night",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "turn the beeping lights off",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "please turn the lights off",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "thing",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "can you turn the lights on?",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "thing",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "lights off",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "thing",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "lights on",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "thing",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "turn the lights on, please",
+      "intent": "SetPowerState",
+      "entities": [
+        {
+          "entity": "powerState",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "thing",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    }
+  ]
+}

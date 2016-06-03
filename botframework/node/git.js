@@ -29,7 +29,7 @@ module.exports = {
         rmdir(repoDir, function (err, dirs, files) {
             Git.Clone(githubRepoUrl, repoDir, cloneOptions)
                 .done(function (blob) {
-                    console.log("cloned OpenT2T repo on " + repoDir);
+                    console.log("cloned OpenT2T repo locally at: " + repoDir);
                     doneCallback();
                 });
         });
@@ -41,7 +41,7 @@ module.exports = {
                 // clone the device registry locally
                 Git.Clone(githubRepoUrl, repoDir, cloneOptions)
                     .done(function (blob) {
-                        console.log("cloned OpenT2T repo on " + repoDir);
+                        console.log("cloned OpenT2T repo locally at: " + repoDir);
                     });
 
             } else {

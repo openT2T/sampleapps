@@ -72,7 +72,7 @@ app.use(function (err, req, res, next) {
 });
 
 // clone the translators repo locally
-console.log('Starting repo clone locally...');
+console.log('Initiating repo clone...');
 git.clone(settings.repoDir, settings.deviceRegistryUrl, function () {
     // success
 });

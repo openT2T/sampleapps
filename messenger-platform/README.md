@@ -12,7 +12,7 @@ Uses translators to interact with device categories (schemas).
 3. Create the config/config.json file, and include the required information specific to your application.
    This is private information, and should not be committed to git (hence this file is in .gitignore)
 
-```
+```json
 {
     "deviceRegistryUrl": "https://github.com/openT2T/translators.git",
     "repoDir": "repo",
