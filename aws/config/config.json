@@ -1,6 +1,5 @@
 {
     "deviceRegistryUrl": "https://github.com/openT2T/translators.git",
-    "deviceRegistryLocal": "repo",
     "repoDir": "repo",
     "kinesis": {
         "region": "<aws region, ex. us-west-2>",

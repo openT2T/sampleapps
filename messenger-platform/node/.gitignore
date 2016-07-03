@@ -1,0 +1,4 @@
+config
+repo
+node_modules
+public/components

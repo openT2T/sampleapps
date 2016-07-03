@@ -1,7 +1,7 @@
 ## Sample rules
 this is an example of some simple rules that leverage the device hierarchy that is built using the Device Collection and Device Profile files
 
-Rules are defined in a module, more than one file can be used in the rules/ directory. In order to invoke a specific method in the thinkTranslator-defined schema, user can use the device hierarchy defined in the Device Collection file.
+Rules are defined in a module, more than one file can be used in the rules/ directory. In order to invoke a specific method in the thingTranslator-defined schema, user can use the device hierarchy defined in the Device Collection file.
 The structure uses the following schema: `system.<DeviceCollection Name>.<device Structure>.device.<thingTranslator method to call>`.
 
 The following is an example of few rules that uses the sample structure included with this app
