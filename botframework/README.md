@@ -7,7 +7,7 @@ Uses translators to interact with device categories (schemas).
 # Setup
 
 1. You need to follow the instructions on the Microsoft Bot Framework site to create a bot registered with the Micrsoft Bot Framework
-2. Next, you need to create a model in luis.ai, and import the sample model provided in models/luis-model.json. More information on https://www.luis.ai/Help#ImportingApps.
+2. Next, you need to create a model in luis.ai, and import the sample model provided in speech-assets/luis-model.json. More information on https://www.luis.ai/Help#ImportingApps.
 3. Create the config/config.json file, and include the required information specific to your application.
    This is private information, and should not be committed to git (hence this file is in .gitignore)
 
