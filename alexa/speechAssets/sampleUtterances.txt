@@ -1,0 +1,7 @@
+SetPowerStateIntent
+
+AMAZON.CancelIntent
+
+AMAZON.StopIntent
+
+AMAZON.HelpIntent
